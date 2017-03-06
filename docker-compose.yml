@@ -18,7 +18,7 @@ services:
     build:
       context: .
       dockerfile: ./web/Dockerfile
-    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    command: /usr/local/bin/docker-bootstrap
     environment:
       - ELASTICSEARCH_URL=es:9200
       - LETTER_OPENER_DELIVERY_METHOD=letter_opener_web
