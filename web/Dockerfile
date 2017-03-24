@@ -2,7 +2,7 @@ FROM ruby:2.3.3-slim
 RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && echo 'Asia/Tokyo' > /etc/timezone && date
 RUN apt-get update -qq && \
     apt-get install -y software-properties-common git-core build-essential autoconf curl \
-      ruby ruby-dev zlib1g-dev libmysqlclient-dev imagemagick libmagickcore-dev libmagickwand-dev nodejs locales
+      ruby ruby-dev zlib1g-dev libmysqlclient-dev imagemagick libmagickcore-dev libmagickwand-dev nodejs locales wget
 
 RUN mkdir /myapp
 WORKDIR /myapp
@@ -24,3 +24,11 @@ ADD ./src/recop/Gemfile.lock /myapp/recop/Gemfile.lock
 ADD ./web/docker-bootstrap /usr/local/bin/docker-bootstrap
 
 RUN bundle install
+
+ENV PHANTOMJS_VERSION 2.1.1
+RUN apt-get install -y nodejs && \
+    cd /tmp && \
+    wget -q https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 && \
+    tar jxf phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 && \
+    mv phantomjs-$PHANTOMJS_VERSION-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs && \
+    rm -rf phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 phantomjs-$PHANTOMJS_VERSION-linux-x86_64
