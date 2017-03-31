@@ -14,6 +14,10 @@ services:
       dockerfile: ./es/Dockerfile
     volumes:
       - esdata:/usr/share/elasticsearch/data
+  redis:
+    image: redis:2.8.23
+    volumes:
+      - redisdata:/data
   web:
     build:
       context: .
@@ -21,6 +25,7 @@ services:
     command: /usr/local/bin/docker-bootstrap
     environment:
       - ELASTICSEARCH_URL=es:9200
+      - REDIS_URL=redis://redis:6379
       - LETTER_OPENER_DELIVERY_METHOD=letter_opener_web
     volumes:
       - ./src:/myapp
@@ -33,4 +38,6 @@ volumes:
   mysqldata:
     external: false
   esdata:
+    external: false
+  redisdata:
     external: false
