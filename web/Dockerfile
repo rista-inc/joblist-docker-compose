@@ -2,7 +2,7 @@ FROM ruby:2.3.3-slim
 RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && echo 'Asia/Tokyo' > /etc/timezone && date
 RUN apt-get update -qq && \
     apt-get install -y software-properties-common git-core build-essential autoconf curl \
-      ruby ruby-dev zlib1g-dev libmysqlclient-dev imagemagick libmagickcore-dev libmagickwand-dev nodejs locales wget
+      ruby ruby-dev zlib1g-dev libmysqlclient-dev imagemagick libmagickcore-dev libmagickwand-dev nodejs locales wget redis-tools
 
 RUN mkdir /myapp
 WORKDIR /myapp
