@@ -1,4 +1,4 @@
-# How to use.
+## How to use.
 
 ``` sh
 # Clone sources into ./src dir.
@@ -11,14 +11,13 @@ docker-compose build
 docker-compose up
 
 # Initialize database and elasticsearch.
-docker-compose run web bin/rake joblist:db:reset
-
-# Run any command.
-docker-compose run web bin/rake db:migrate
-docker-compose run web bin/rails c
+docker-compose run --rm web bin/rake joblist:db:reset
 ```
 
-# Todo
+## Run any command.
 
-* After updating the Gemfile you have to rebuild. It is should be run `bundle install` when `docker-compose up`.
+```
+docker-compose run --rm web bin/rake db:migrate
+docker-compose run --rm web bin/rails c
+```
 
