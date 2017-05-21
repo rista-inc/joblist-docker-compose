@@ -12,6 +12,10 @@ docker-compose up
 
 # Initialize database and elasticsearch.
 docker-compose run --rm web bin/rake joblist:db:reset
+
+# Connect to Redis.
+docker-compose run --rm web bash
+redis-cli -h redis
 ```
 
 ## Run any command.
