@@ -27,7 +27,7 @@ docker-compose run --rm web bin/rails c
 
 ## If you have trouble.
 
-### `rails c` failed.
+### `rails s` failed.
 
 ``` sh
 rm src/tmp/pid/*

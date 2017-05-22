@@ -1,4 +1,4 @@
-FROM ruby:2.3.3-slim
+FROM ruby:2.4.1-slim
 RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && echo 'Asia/Tokyo' > /etc/timezone && date
 RUN apt-get update -qq && \
     apt-get install -y software-properties-common git-core build-essential autoconf curl \
