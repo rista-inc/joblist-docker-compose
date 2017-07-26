@@ -14,6 +14,8 @@ services:
       dockerfile: ./es/Dockerfile
     volumes:
       - esdata:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
   redis:
     image: redis:2.8.23
     volumes:
