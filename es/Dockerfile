@@ -1,5 +1,6 @@
-FROM elasticsearch:2-alpine
+FROM elasticsearch:5-alpine
 
-RUN bin/plugin install analysis-kuromoji
-RUN bin/plugin install analysis-icu
-RUN bin/plugin install lmenezes/elasticsearch-kopf
+RUN bin/elasticsearch-plugin install analysis-kuromoji
+RUN bin/elasticsearch-plugin install analysis-icu
+
+ENV ES_JAVA_OPTS "-Xms1g -Xmx1g"
