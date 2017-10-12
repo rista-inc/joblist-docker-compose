@@ -22,6 +22,7 @@ ADD ./src/recop/Gemfile /myapp/recop/Gemfile
 ADD ./src/recop/Gemfile.lock /myapp/recop/Gemfile.lock
 
 ADD ./web/docker-bootstrap /usr/local/bin/docker-bootstrap
+ADD ./web/Procfile /usr/local/bin/Procfile
 
 RUN bundle install
 
@@ -43,3 +44,4 @@ RUN cd /tmp && \
     mv phantomjs-$PHANTOMJS_VERSION-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs && \
     rm -rf phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 phantomjs-$PHANTOMJS_VERSION-linux-x86_64
 
+RUN gem install foreman
