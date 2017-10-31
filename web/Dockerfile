@@ -7,6 +7,7 @@ RUN apt-get update -qq && \
 RUN mkdir /myapp
 WORKDIR /myapp
 
+ENV DEBIAN_FRONTEND noninteractive
 ENV LANG C.UTF-8
 
 ADD ./src/Gemfile /myapp/Gemfile
@@ -23,8 +24,6 @@ ADD ./src/recop/Gemfile.lock /myapp/recop/Gemfile.lock
 
 ADD ./web/docker-bootstrap /usr/local/bin/docker-bootstrap
 ADD ./web/Procfile /usr/local/bin/Procfile
-
-RUN bundle install
 
 RUN apt-get install -y apt-transport-https
 RUN apt-get update -qq
@@ -45,3 +44,4 @@ RUN cd /tmp && \
     rm -rf phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 phantomjs-$PHANTOMJS_VERSION-linux-x86_64
 
 RUN gem install foreman
+RUN bundle install
