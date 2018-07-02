@@ -5,7 +5,7 @@ init:
 	docker-compose run --rm web bin/setup
 
 up:
-	rm -rf tmp/pids/*
+	rm -rf src/tmp/pids/*
 	docker-compose up
 
 c:

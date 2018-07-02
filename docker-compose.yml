@@ -7,13 +7,13 @@ services:
       - MYSQL_ROOT_PASSWORD=root
     volumes:
       - mysqldata:/var/lib/mysql
-      - ./mysql/conf.d:/etc/mysql/conf.d:cached
+      - ./mysql/conf.d:/etc/mysql/conf.d
   es:
     build:
       context: .
       dockerfile: ./es/Dockerfile
     volumes:
-      - esdata:/usr/share/elasticsearch/data:cached
+      - esdata:/usr/share/elasticsearch/data
     ports:
       - "9200:9200"
   # kibana:
@@ -25,18 +25,18 @@ services:
   redis:
     image: redis:2.8.23
     volumes:
-      - redisdata:/data:cached
+      - redisdata:/data
   web:
     build:
       context: .
       dockerfile: ./web/Dockerfile
-    command: /usr/local/bin/docker-bootstrap
+    command: foreman start -f /usr/local/bin/Procfile -d .
     environment:
       - ELASTICSEARCH_URL=es:9200
       - REDIS_URL=redis://redis:6379
       - LETTER_OPENER_DELIVERY_METHOD=letter_opener_web
     volumes:
-      - ./src:/myapp:cached
+      - ./src:/myapp
     ports:
       - "3000:3000"
       - "3035:3035"

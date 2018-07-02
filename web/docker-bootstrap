@@ -1,6 +1,0 @@
-#!/bin/bash
-
-bundle check || bundle install
-bundle exec rake db:migrate
-
-foreman start -f /usr/local/bin/Procfile -d .
