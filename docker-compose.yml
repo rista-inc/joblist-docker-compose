@@ -8,6 +8,8 @@ services:
     volumes:
       - mysqldata:/var/lib/mysql
       - ./mysql/conf.d:/etc/mysql/conf.d
+    ports:
+      - "3306:3306"
   es:
     build:
       context: .
@@ -26,23 +28,8 @@ services:
     image: redis:2.8.23
     volumes:
       - redisdata:/data
-  web:
-    build:
-      context: .
-      dockerfile: ./web/Dockerfile
-    command: foreman start -f /usr/local/bin/Procfile -d .
-    environment:
-      - ELASTICSEARCH_URL=es:9200
-      - REDIS_URL=redis://redis:6379
-      - LETTER_OPENER_DELIVERY_METHOD=letter_opener_web
-    volumes:
-      - ./src:/myapp
     ports:
-      - "3000:3000"
-      - "3035:3035"
-    depends_on:
-      - db
-
+      - "6379:6379"
 volumes:
   mysqldata:
     external: false
